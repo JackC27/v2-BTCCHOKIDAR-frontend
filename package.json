@@ -1,0 +1,25 @@
+{
+  "name": "chokidarrollup",
+  "version": "1.0.0",
+  "description": "btcchokidar frontend",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cp index.html dist/index.html && rollup -c"
+  },
+  "keywords": [
+    "rollup",
+    "react"
+  ],
+  "author": "btcchokidar",
+  "dependencies": {
+    "firebase": "^9.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-react": "latest",
+    "@rollup/plugin-babel": "latest",
+    "@rollup/plugin-node-resolve": "^14.1.0"
+  }
+}
