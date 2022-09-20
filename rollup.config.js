@@ -6,14 +6,15 @@ export default [
     output : {
       file: "dist/bundle.js", 
       format: "iife", 
-      name:"test1"
+      name:"test1",
     },
     plugins: [
       nodeResolve(),
       babel({
-        exclude: 'node_modules/**'
+        exclude: 'node_modules/**',
+        babelHelpers: 'bundled'
       })
-    ]
+    ],
   }
 ]
 
