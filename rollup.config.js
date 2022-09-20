@@ -1,18 +1,23 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { babel } from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+
 export default [
   {
-    input: "src/main.js",
+    input: ["src/main.js"],
     output : {
       file: "dist/bundle.js", 
       format: "iife", 
-      name:"test1",
+      name:"main",
+      sourcemap: true
     },
     plugins: [
-      nodeResolve(),
+      nodeResolve({extensions: [".js"]}),
+      commonjs(),
       babel({
         exclude: 'node_modules/**',
-        babelHelpers: 'bundled'
+        babelHelpers: 'bundled',
+        presets: ["@babel/preset-react"]
       })
     ],
   }

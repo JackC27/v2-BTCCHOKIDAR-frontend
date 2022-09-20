@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cp index.html dist/index.html && rollup -c"
   },
+  "type": "module",
   "keywords": [
     "rollup",
     "react"
@@ -20,6 +21,7 @@
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
     "@rollup/plugin-babel": "latest",
+    "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^14.1.0"
   }
 }

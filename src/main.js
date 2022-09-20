@@ -16,23 +16,19 @@ import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
   const app = initializeApp(firebaseConfig)
   // Initialize Cloud Firestore and get a reference to the service
   const db = getFirestore(app);
-
+  
   const results = [];
-  console.log(" BEGIN ")
-  export const queryDb = async () => {
+  const queryDB = async function(){
     const x = await getDocs(collection(db, "youtubelinks"))
     x.forEach(async (doc) => {
-      await console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-      const y = await doc.data();
-      await results.push(y);
+      await results.push(doc.data())
     });
-    console.log(" DONE ")
-  }
+}
 
-  // console.log(" querySnapshot: ", queryDb() );
-  // return queryDb();
-  // Promise.allSettled( results )
-  // .then( ( i ) => console.log( i ))
-  // .catch( ( e ) => console.log(" YOU MAKE THES PROMISES ", e))
+//https://www.freecodecamp.org/news/async-await-javascript-tutorial/
 
-//console.log(" APP ", db)
+export const fuckAwait = async () => {
+  console.log(" RESULTS : ", results);
+  await queryDB()
+  await console.log( "res ", results);
+}
