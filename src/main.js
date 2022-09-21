@@ -28,7 +28,8 @@ import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 //https://www.freecodecamp.org/news/async-await-javascript-tutorial/
 
 export const fuckAwait = async () => {
-  console.log(" RESULTS : ", results);
   await queryDB()
-  await console.log( "res ", results);
+  console.log(" RESULTS : ", results);
+
+  return results;
 }
