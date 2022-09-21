@@ -5,16 +5,17 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cp index.html dist/index.html && rollup -c"
+    "build": "cp index.html dist/index.html && rollup -c --environment NODE_ENV:production"
   },
-  "type": "module",
   "keywords": [
     "rollup",
     "react"
   ],
   "author": "btcchokidar",
   "dependencies": {
-    "firebase": "^9.10.0"
+    "firebase": "^9.10.0",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@babel/core": "latest",
@@ -22,6 +23,7 @@
     "@babel/preset-react": "latest",
     "@rollup/plugin-babel": "latest",
     "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^14.1.0"
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "@rollup/plugin-replace": "^4.0.0"
   }
 }
