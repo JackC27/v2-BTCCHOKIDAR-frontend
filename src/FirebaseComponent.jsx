@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from "react";
-import { fuckAwait } from "./main";
+import { queryFirebase, addDocumentToFirebase } from "./main";
 
 export const FirebaseComponent = () => {
   const [results, setResults] = useState([]);
+
+  // useEffect( () => {
+  //   addDocumentToFirebase();
+  // }, [])
+
   useEffect( () => {
-    fuckAwait()
+    queryFirebase()
     .then( i => {
       setResults(i)
     })
@@ -16,12 +21,15 @@ export const FirebaseComponent = () => {
 
   return (
     <div>
-      <p> Attempt to call firebase </p>
       <div>
         {results.map( ({host, link, guest, title, text}, idx) => { 
           return (
             <div key={idx}>
-             {host} {link} {guest} {title} {text}
+              <p>{host}</p>
+              <p>{link} </p>
+              <p>{guest}</p>
+              <p>{title}</p>
+              <p>{text}</p>
             </div>
           )
         })}
