@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
-import { queryFirebase, addDocumentToFirebase } from "./main";
+import { queryFirebase } from "./main";
+import { Card } from "./Card"
+
 
 export const FirebaseComponent = () => {
   const [results, setResults] = useState([]);
@@ -20,20 +22,10 @@ export const FirebaseComponent = () => {
   }, [])
 
   return (
-    <div>
-      <div>
-        {results.map( ({host, link, guest, title, text}, idx) => { 
-          return (
-            <div key={idx}>
-              <p>{host}</p>
-              <p>{link} </p>
-              <p>{guest}</p>
-              <p>{title}</p>
-              <p>{text}</p>
-            </div>
-          )
+    <div className={"cardContainer"}>
+        {results.map( (i, idx) => {
+          return ( <Card props={i} /> )
         })}
-      </div>
     </div> 
   )
 }
