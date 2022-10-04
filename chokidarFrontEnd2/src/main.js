@@ -4,13 +4,14 @@ import { videosList } from "./videosList";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
+  // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyDtSgWTNJ9DCTIhQAO62oLqeCFEQQ--h2I",
-    authDomain: "btcchokidar-362406.firebaseapp.com",
-    projectId: "btcchokidar-362406",
-    storageBucket: "btcchokidar-362406.appspot.com",
-    messagingSenderId: "509873204247",
-    appId: "1:509873204247:web:12b8b16dde3d230f918052"
+    apiKey: "AIzaSyBBJKklaYU772b6kHbOWQFmcpm5zw8pPI4",
+    authDomain: "btcv2-9892c.firebaseapp.com",
+    projectId: "btcv2-9892c",
+    storageBucket: "btcv2-9892c.appspot.com",
+    messagingSenderId: "926821013818",
+    appId: "1:926821013818:web:8c320fdfd845978fcb9803"
   };
 
   const app = initializeApp(firebaseConfig)
@@ -32,11 +33,13 @@ import { videosList } from "./videosList";
 export const queryFirebase = async () => {
   const results = [];
 
-  const queryDB = async function(){
-    const x = await getDocs(collection(db, "youtubelinks"))
-    x.forEach(async (doc) => {
-      await results.push(doc.data())
+  const queryDB = async () => {
+    const x = await getDocs(collection(db, "test"))
+    console.log(" X ", x)
+    x.forEach( (doc) => {
+      results.push(doc.data())
     });
+
   }
 
   await queryDB();

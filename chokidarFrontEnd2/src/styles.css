@@ -21,7 +21,9 @@
     font-family: monospace;
     width: 100%;
     background-color: #f9f9f9;
-
+}
+.actionWatch{
+    font-family: 'NaziTypewriterRegular';
 }
 .title{
     font-family: 'NaziTypewriterRegular';

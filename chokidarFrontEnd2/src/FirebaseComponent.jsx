@@ -13,6 +13,7 @@ export const FirebaseComponent = () => {
   useEffect( () => {
     queryFirebase()
     .then( i => {
+      console.log(" BEGIN QUERY ");
       setResults(i)
     })
     .catch( e => {
@@ -22,7 +23,9 @@ export const FirebaseComponent = () => {
   }, [])
 
   return (
-    <div className={"cardContainer"}>
+    <div className={"cardContainer"}>      
+      <h1> BTC Chokidar </h1>
+
         {results.map( (i, idx) => {
           return ( <Card props={i} /> )
         })}

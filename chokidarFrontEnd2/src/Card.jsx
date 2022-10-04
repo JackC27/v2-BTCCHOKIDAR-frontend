@@ -1,5 +1,11 @@
 import React from "react";
 
+export const Watch = () => {
+  <div className="watch-button-containter">
+    <p>W</p>
+  </div>
+}
+
 export const Card = (props) => {
     const {host, link, guest, title, text} = props.props;
     return (
@@ -9,12 +15,12 @@ export const Card = (props) => {
             <p className={"title"}>{title}</p>
           </div>
           <div style={{display: "flex"}}>
-            <p>host: {host}</p>
-            <p>guest: {guest}</p>
+            <p>{host}</p>
+            <p>{guest}</p>
           </div>
           <div style={{display: "flex"}}>                
-            <p>link: {link} </p>
-            <p>text: {text}</p>
+            <a href={link} ><p className="actionWatch">{Watch} </p></a>
+            <p>{text}</p>
           </div>
         </div>
       </div>
