@@ -1,34 +1,42 @@
 import React, {useEffect, useState} from "react";
-import { queryFirebase } from "./main";
+import { queryFirebase } from "./main"; //firestore(google)
+import { callAirtable, testCall } from "./main"; //functions -> Airtable -> functions -> UI
 import { Card } from "./Card"
 
 
 export const FirebaseComponent = () => {
-  const [results, setResults] = useState([]);
-
-  // useEffect( () => {
-  //   addDocumentToFirebase();
-  // }, [])
+  let [results, setResults] = useState([]);
 
   useEffect( () => {
-    queryFirebase()
-    .then( i => {
-      console.log(" BEGIN QUERY ");
-      setResults(i)
+    callAirtable()
+    .then( (data) => {
+      console.log(" Got em! ", data);
+      let {records} = data;
+      records ? setResults(records) : [];
     })
     .catch( e => {
       console.error( " ERR ", e);
+    })    
+  }, [])
+
+  useEffect( () => {
+    console.log(" THINGY ")
+    testCall()
+    .then( i => {
+      console.log(" I ", i)
+      return i;
     })
-    
+    .catch( e => {
+      console.error(" ERR TESTCALL: ", e)
+    })
   }, [])
 
   return (
     <div className={"cardContainer"}>      
-      <h1> BTC Chokidar </h1>
-
-        {results.map( (i, idx) => {
-          return ( <Card props={i} /> )
-        })}
+      <h1> BTC Chokidar 1</h1>
+      {results.map( (i, idx) => {
+        return ( <Card props={i} key={idx} /> )
+      })}
     </div> 
   )
 }

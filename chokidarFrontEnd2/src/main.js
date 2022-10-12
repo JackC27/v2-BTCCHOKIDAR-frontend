@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFunctions, httpsCallable } from 'firebase/functions';
 import { videosList } from "./videosList";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -15,10 +16,28 @@ import { videosList } from "./videosList";
   };
 
   const app = initializeApp(firebaseConfig)
+  
   // Initialize Cloud Firestore and get a reference to the service
   const db = getFirestore(app);
   
+  //Initialize Cloud Functions and get a reference to the service
+  const functions = getFunctions(app);
 
+  //THIS IS AIRTABLE!!!
+  export const callAirtable = async () => {
+    let data = {};
+    const ytLinks = httpsCallable(functions, 'ytlinks');
+    await ytLinks({ text: "" })
+    .then( (result) => {
+      // Read result of the Cloud Function.
+      console.log("Remote lambda RESULT 3 ", result)
+      data = result.data;
+    })
+    .catch ( e => {
+      console.error(" ERR: ", e)
+    })
+    return data;
+  }
 // export const addDocumentToFirebase = async () => {
 //   // videosList
 //   // Add a new document in collection "cities"
@@ -30,18 +49,34 @@ import { videosList } from "./videosList";
 
 // }
 
+
+//make sure to pay attention to the name of the database.
+//THIS IS FIRESTORE!!
 export const queryFirebase = async () => {
   const results = [];
 
   const queryDB = async () => {
-    const x = await getDocs(collection(db, "test"))
-    console.log(" X ", x)
+    const x = await getDocs(collection(db, 'test'))
     x.forEach( (doc) => {
       results.push(doc.data())
     });
-
   }
 
   await queryDB();
   return results;
+}
+
+export const testCall = async() => {
+  console.log(" TEST CALL ")
+  const webhook = httpsCallable(functions, 'webhook');
+
+  await webhook()
+  .then( (result) => {
+    // Read result of the Cloud Function.
+    console.log("Remote lambda RESULT ", result)
+    return result;
+  })
+  .catch ( e => {
+    console.error(" ERR: ", e)
+  })
 }
