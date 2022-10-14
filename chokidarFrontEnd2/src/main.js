@@ -38,16 +38,6 @@ import { videosList } from "./videosList";
     })
     return data;
   }
-// export const addDocumentToFirebase = async () => {
-//   // videosList
-//   // Add a new document in collection "cities"
-//   await videosList.forEach( async i => {
-//     await addDoc(collection(db, "youtubelinks"), i);
-//   })
-  
-//   console.log(" DONE ADDING ")
-
-// }
 
 
 //make sure to pay attention to the name of the database.
@@ -64,19 +54,4 @@ export const queryFirebase = async () => {
 
   await queryDB();
   return results;
-}
-
-export const testCall = async() => {
-  console.log(" TEST CALL ")
-  const webhook = httpsCallable(functions, 'webhook');
-
-  await webhook()
-  .then( (result) => {
-    // Read result of the Cloud Function.
-    console.log("Remote lambda RESULT ", result)
-    return result;
-  })
-  .catch ( e => {
-    console.error(" ERR: ", e)
-  })
 }

@@ -1,30 +1,39 @@
 import React from "react";
 
-export const Watch = () => {
-  <div className="watch-button-containter">
-    <p>Watch me now</p>
-  </div>
+const Watch = (props) => {
+  let { link, order } = props; 
+  return(
+   <div className="watchNow">
+      <a href={link} target="_blank">
+        <p>Watch me now</p>
+      </a>
+      {/* <p style={{margin: "2px"}}>{order}</p>       */}
+    </div>
+  )
+}
+
+const DataRow = (props) => {
+  let {title, host, guest, text} = props;
+  return (
+    <div className={"dataRow"}>
+      <div>
+        <p className={"title"}>{title}</p>
+        <p>{host}</p>
+        <p>{guest}</p>
+      </div>
+      <div>
+        <p>{text}</p>
+      </div>
+    </div> 
+  )
 }
 
 export const Card = (props) => {
-  console.log(" PROPS ", props);
-    const {host, link, guest, title, text} = props.props.fields;
+    const {host, link, guest, title, text, Order} = props.props.fields;
     return (
       <div className={"card"} >
-        <div style={{margin: "5px"}}>
-          <div style={{display: "flex"}}>
-            <p className={"title"}>{title}</p>
-          </div>
-          <div style={{display: "flex", flexDirection: "column"}}>
-            <p>{host}</p>
-            <p>{guest}</p>
-          </div>
-          <div style={{display: "flex"}}>                
-            <a href={link} ><p className="actionWatch"></p></a>
-            <Watch />
-            <p>{text}</p>
-          </div>
-        </div>
+        <DataRow title={title} host={host} guest={guest} text={text} />
+        <Watch link={link} order={Order} />
       </div>
     )
 }

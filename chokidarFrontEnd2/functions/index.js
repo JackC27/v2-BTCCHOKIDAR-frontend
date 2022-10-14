@@ -15,7 +15,7 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 
-admin.initializeAp
+admin.initializeApp();
 const cors = require('cors');
 const axios = require("axios");
 
